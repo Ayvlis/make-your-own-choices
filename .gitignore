@@ -1,4 +1,4 @@
-ignore/*
+ignore
 .jshintrc
 gulpfile.js
-.sass-cache/*
+.sass-cache
