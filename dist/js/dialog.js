@@ -22,11 +22,11 @@ function choicesDialog(dialogContent) {
 }
 
 function changeList(where, newContent, checked) {
-  var ul = where + " ul";
+  var ul = where + " .content";
   $(ul).fadeOut("fast", function() {
     $(ul).remove();
     if (typeof newContent !== 'object') {
-      $(where).prepend("<p class='end-par'>"+newContent+"</p>");
+      $(where).prepend("<div class='content'><p class='end-par'>"+newContent+"</p></div>");
     } else {
       createList(newContent, where);
     }
@@ -116,6 +116,7 @@ function openDialog(dialogId, JSONcontent) {
     changeList(".dialog-body", previousContent, checked);
 
     content = JSONcontent;
+    console.log(history);
 
   }
 
@@ -136,6 +137,8 @@ function openDialog(dialogId, JSONcontent) {
     changeList(".dialog-body", nextContent, checked); //next page
 
     content = JSONcontent; //reset
+
+    console.log(history);
 
 
   }
