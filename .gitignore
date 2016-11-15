@@ -1,1 +1,4 @@
 ignore
+.jshintrc
+gulpfile.js
+.sass-cache
