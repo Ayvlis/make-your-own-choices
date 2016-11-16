@@ -47,6 +47,10 @@ function openDialog(dialogId, JSONcontent) {
 
     });
 
+    /*remove focus from the buttons*/
+    $('.ui-dialog button').blur();
+
+
    }
 
 
@@ -109,6 +113,9 @@ function openDialog(dialogId, JSONcontent) {
       } else {
         createList(newContent, where);
       }
+
+      /*remove focus from the buttons*/
+      $('.ui-dialog button').blur();
 
     });
   
