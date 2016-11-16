@@ -1,0 +1,52 @@
+/*colors*/
+
+$blue: #003eff;
+$light-blue: #007fff;
+
+
+.trigger {
+  p {
+    cursor: pointer;
+    color: $blue;
+      font-family: "Arial";
+  }
+
+  width: 10vw;
+  margin: auto;
+  margin-top: 5%
+}
+
+/*Dialog Style */
+
+ul {
+  list-style: none;
+  li {
+    padding: .3em;
+    
+    .my-radio {
+      
+      &:hover {
+        cursor: pointer;
+      }
+      input {
+        visibility: hidden;
+        
+        
+      }
+      span {
+        color: $light-blue;
+        vertical-align: middle;
+        margin-right: .5em;
+        font-size: 1.3em;
+      }
+    }
+    .checked {
+      color: $blue !important;
+    }
+  }
+}
+
+#dialog {
+  display: none;
+}
+

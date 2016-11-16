@@ -1,0 +1,1 @@
+.trigger{width:10vw;margin:auto;margin-top:5%}.trigger p{cursor:pointer;color:#003eff;font-family:Arial}ul{list-style:none}ul li{padding:.3em}ul li .my-radio:hover{cursor:pointer}ul li .my-radio input{visibility:hidden}ul li .my-radio span{color:#007fff;vertical-align:middle;margin-right:.5em;font-size:1.3em}ul li .checked{color:#003eff!important}#dialog{display:none}
