@@ -1,25 +1,46 @@
 function choicesDialog(dialogContent) {
 
-  createList(dialogContent, ".dialog-body");
+  $('body').append("<div id='dialog'><div class='dialog-body'></div></div>");
 
-  //  openDialog("#dialog");
-
-  /* Get the button that opens the modal*/
-  var btn = $(".trigger");
-
-  /*open the dialog on click*/
-  btn.click(function() {
-    openDialog("#dialog", dialogContent);
-
-    /* set up the checkboxes listeners */
-    var checked = 0;
-    $(".my-radio").click(function() {
-      checked = check(this);
-    });
-
-  });
+  /*open the modal*/
+  openDialog("#dialog", dialogContent);
   
 }
+
+function openDialog(dialogId, JSONcontent) {
+  var history = [],
+     content = JSONcontent; //where we are
+
+     $(".dialog-body").empty();
+     createList(JSONcontent, ".dialog-body");
+     $(".my-radio").click(function() {
+
+      checked = check(this);
+
+    });
+     history = [];
+     $("#dialog").dialog({
+      resizable: false,
+      height: "auto",
+      width: 400,
+      modal: true,
+      buttons: {
+        "Back": function() {
+          back(checked, history, content, JSONcontent);
+          checked = 0;
+        },
+        "Next": function() {
+          if(checked != 0) {
+            next(checked, history, content, JSONcontent);
+            checked = 0;
+          }
+        }
+      }
+
+    });
+
+   }
+
 
 function changeList(where, newContent, checked) {
   var ul = where + " .content";
@@ -68,41 +89,7 @@ function check(input) {
 }
 
 
-function openDialog(dialogId, JSONcontent) {
-  var history = [],
-     content = JSONcontent; //where we are
 
-     $(".dialog-body").empty();
-     createList(JSONcontent, ".dialog-body");
-     $(".my-radio").click(function() {
-
-      checked = check(this);
-
-    });
-     history = [];
-     $("#dialog").dialog({
-      resizable: false,
-      height: "auto",
-      width: 400,
-      modal: true,
-      buttons: {
-        "Back": function() {
-          back(checked, history, content, JSONcontent);
-          checked = 0;
-        },
-        "Next": function() {
-          if(checked != 0) {
-            next(checked, history, content, JSONcontent);
-            checked = 0;
-          }
-        }
-      }
-
-    });
-
-     $("button").blur();
-
-   }
 
    /*back to the previous section */
    function back(checked, history, content, JSONcontent) {

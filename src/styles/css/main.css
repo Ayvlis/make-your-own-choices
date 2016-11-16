@@ -10,7 +10,7 @@
   font-family: "Arial";
 }
 
-/*Dialog Style  (WIP) */
+/*Dialog Style */
 ul {
   list-style: none;
 }
@@ -35,54 +35,4 @@ ul li .checked {
 
 #dialog {
   display: none;
-}
-
-.post {
-  width: 80%;
-  margin: auto;
-  font-family: "Arial";
-  color: #333333;
-}
-.post .title {
-  font-size: 3vw;
-  color: #003eff;
-}
-.post .text {
-  font-size: 1.5vw;
-}
-.post .actions button {
-  background-color: #e9e9e9;
-  border: none;
-  border-radius: 2px;
-  font-size: 1.4vw;
-  padding: .5vw .9vw;
-  color: #003eff;
-}
-.post .actions button:hover {
-  background-color: #007fff;
-  color: #ededed;
-  cursor: pointer;
-}
-.post .actions > div {
-  display: inline-block;
-}
-.post .actions > div.report {
-  float: right;
-  font-size: 1vw;
-  color: #003eff;
-}
-.post .actions > div.report:hover {
-  color: #333333;
-  cursor: pointer;
-}
-
-.wip {
-  color: red;
-  border: 1px solid black;
-  display: block;
-  margin: auto;
-  width: 20vw;
-  text-align: center;
-  font-family: sans-serif;
-  padding: 0.5vw 0.2vw;
 }

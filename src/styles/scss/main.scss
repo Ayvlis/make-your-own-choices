@@ -2,11 +2,6 @@
 
 $blue: #003eff;
 $light-blue: #007fff;
-$black: #333333;
-$blue-2: #ededed;
-
-$white: #fff;
-$bg: #e9e9e9;
 
 
 .trigger {
@@ -21,7 +16,7 @@ $bg: #e9e9e9;
   margin-top: 5%
 }
 
-/*Dialog Style  (WIP) */
+/*Dialog Style */
 
 ul {
   list-style: none;
@@ -55,54 +50,3 @@ ul {
   display: none;
 }
 
-.post {
-  width: 80%;
-  margin: auto;
-  font-family: "Arial";
-  color: $black;
-  .title {
-    font-size: 3vw;
-    color: $blue;
-  }
-  .text {
-    font-size: 1.5vw;
-  }
-  .actions {
-    button {
-      background-color: $bg;
-      border: none;
-      border-radius: 2px;
-      font-size: 1.4vw;
-      padding: .5vw .9vw;
-      color: $blue; //#012cff;
-      &:hover {
-        background-color: $light-blue;
-        color: $blue-2;
-        cursor: pointer;
-      }
-    }
-    & > div {
-      display: inline-block;
-      &.report {
-        float: right;
-        font-size: 1vw;
-        color: $blue;
-        &:hover {
-          color: $black;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-}
-
-.wip {
-  color: red;
-  border: 1px solid black;
-  display: block;
-  margin: auto;
-  width: 20vw;
-  text-align: center;
-  font-family: sans-serif;
-  padding: .5vw .2vw
-}
