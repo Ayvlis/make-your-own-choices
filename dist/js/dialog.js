@@ -1,37 +1,45 @@
 function choicesDialog(dialogContent) {
-
+  /*add the body for the dialog*/
   $('body').append("<div id='dialog'><div class='dialog-body'></div></div>");
 
-  /*open the modal*/
+  /*open the dialog*/
   openDialog("#dialog", dialogContent);
   
 }
 
 function openDialog(dialogId, JSONcontent) {
+  /*keep track of the choices and the content*/
   var history = [],
-     content = JSONcontent; //where we are
+      content = JSONcontent; 
 
-     $(".dialog-body").empty();
+    /* "re"opening the dialog will restart the path */
+     $(".dialog-body").empty(); 
      createList(JSONcontent, ".dialog-body");
-     $(".my-radio").click(function() {
-
+     
+     /*inizialize the checkbox listeners*/
+    $(".my-radio").click(function() {
       checked = check(this);
-
     });
-     history = [];
+
+    /*open jQuery dialog*/
      $("#dialog").dialog({
       resizable: false,
       height: "auto",
       width: 400,
       modal: true,
       buttons: {
+        /*navigation buttons*/
         "Back": function() {
-          back(checked, history, content, JSONcontent);
+          /*back to the previous section*/
+          back(history, content, JSONcontent);
+          /*reset checkboxes*/
           checked = 0;
         },
         "Next": function() {
           if(checked != 0) {
+            /*move to the nex section*/
             next(checked, history, content, JSONcontent);
+            /*reset checkboxes*/
             checked = 0;
           }
         }
@@ -42,75 +50,33 @@ function openDialog(dialogId, JSONcontent) {
    }
 
 
-function changeList(where, newContent, checked) {
-  var ul = where + " .content";
-  $(ul).fadeOut("fast", function() {
-    $(ul).remove();
-    if (typeof newContent !== 'object') {
-      $(where).prepend("<div class='content'><p class='end-par'>"+newContent+"</p></div>");
-    } else {
-      createList(newContent, where);
-    }
-
-  });
-}
-
-function createList(array, elementIn) {
-  var $dom = "<div class='content'><ul>";
-
-  $.each(array, function(key, value) {
-    $dom += "<li><label class='my-radio'><input type='radio' data-name=" + key + "><span class='fa fa-square-o'></span>" + value.label + "</label></li>";
-  });
-  $dom += "</ul></div>";
-  $(elementIn).prepend($dom);
-  $("input").prop("checked", false);
-
-  $(".my-radio").click(function() {
-
-    checked = check(this);
-
-  });
-
-}
-
-
-/*checking a checkbox */
-function check(input) {
-  /*reset checkboxes */
-  $("input").prop("checked", false);
-  $(".fa-check-square-o").removeClass("checked").removeClass("fa-check-square-o").addClass("fa-square-o");
-
-  /*check this*/
-  $(input).find("input").prop("checked", true);
-  $(input).find(".fa").toggleClass("fa-square-o").toggleClass("fa-check-square-o").toggleClass("checked");
-
-  return $(input).find("input").attr("data-name");
-
-}
-
-
-
-
-   /*back to the previous section */
-   function back(checked, history, content, JSONcontent) {
+  /*back to the previous section */
+  function back(history, content, JSONcontent) {
+    /*remove last choice from history*/
     history.pop();
+
+    /*reach the current content*/
     if (history.length > 0) {
       for (var i = 0; i < history.length; i++) {
         content = content[history[i]].content;
       }
     }
-    var previousContent = content;
-    changeList(".dialog-body", previousContent, checked);
 
+    var previousContent = content;
+    
+    /*move to the next section*/
+    changeList(".dialog-body", previousContent);
+
+    /*reset current content*/
     content = JSONcontent;
-    console.log(history);
 
   }
 
 
   /*move to next section */
   function next(checked, history, content, JSONcontent) {
-    history.push(checked); //add the choice to the history
+    /*add new choice to the history*/
+    history.push(checked);
 
     /* get the current level in the json */
     if (history.length > 1) {
@@ -119,13 +85,74 @@ function check(input) {
       }
     }
 
-    var nextContent = content[history[history.length - 1]].content; //where we will go
+    var nextContent = content[history[history.length - 1]].content;
 
-    changeList(".dialog-body", nextContent, checked); //next page
+    /*move to the next section*/
+    changeList(".dialog-body", nextContent, checked);
 
-    content = JSONcontent; //reset
+    /*reset current content*/
+    content = JSONcontent;
 
-    console.log(history);
+  }
 
+
+  /*remove the old checkbox list and add the new one*/
+  function changeList(where, newContent) {
+    /*remove old checkbox list*/
+    var container = where + " .content";
+    $(container).fadeOut("fast", function() {
+      $(container).remove();
+
+      /*add new checkbox list or add the final content*/
+      if ($.type(newContent) === 'string') {
+        $(where).append("<div class='content'><p class='end-par'>"+newContent+"</p></div>");
+      } else {
+        createList(newContent, where);
+      }
+
+    });
+  
+  }
+
+
+  /*DOM elements for the new list from the json object*/
+  function createList(array, elementIn) {
+
+    /*create the container*/
+    var $dom = "<div class='content'><ul>";
+
+    /*add the options*/
+    $.each(array, function(key, value) {
+      $dom += "<li><label class='my-radio'><input type='radio' data-name=" + key + "><span class='fa fa-square-o'></span>" + value.label + "</label></li>";
+    });
+
+    $dom += "</ul></div>";
+
+    /*add the list to the DOM*/
+    $(elementIn).prepend($dom);
+
+    /*reset the checkboxes*/
+    $("input").prop("checked", false);
+
+    /*inizialize the new listeners*/
+    $(".my-radio").click(function() {
+      checked = check(this);
+    });
+
+  }
+
+
+  /*checking a checkbox */
+  function check(input) {
+    /*reset checkboxes */
+    $("input").prop("checked", false);
+    $(".fa-check-square-o").removeClass("checked").removeClass("fa-check-square-o").addClass("fa-square-o");
+
+    /*check this*/
+    $(input).find("input").prop("checked", true);
+    $(input).find(".fa").toggleClass("fa-square-o").toggleClass("fa-check-square-o").toggleClass("checked");
+
+    /*return the selected option*/
+    return $(input).find("input").attr("data-name");
 
   }
