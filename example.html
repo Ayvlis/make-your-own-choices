@@ -1,25 +1,36 @@
 <html>
 <head id="head">
-  <title>Dialog</title>
+  <title>Make Your Own Choices</title>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="dist/css/main.min.css">
+  <link rel="stylesheet" href="dist/css/make-your-own-choices.min.css">
+  <link rel="stylesheet" href="example/css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="dist/js/main.min.js"></script>
-  <script src="dist/js/dialog.min.js"></script>
+  <script src="dist/js/make-your-own-choices.min.js"></script>
 
 </head>
 <body>
 
-    <div class="trigger">
-      <p>Open The Dialog</p>
-    </div>
+    <button class="myoc-trigger">Open the Dialog!</button>
 
-    <div id="dialog" title="Dialog">
-    
-    </div>
+  <div id="myoc-dialog" title="Dialog">
+    <div class="myoc-dialog__body"></div>
+  </div>
+
   
+  <script>
+    /*the button that opens the dialog*/
+  var $btn = $(".myoc-trigger"); 
+
+  $btn.click(function() {
+    /*get the content of your dialog from json file*/
+    $.getJSON('example/dialog.json', function(json) { 
+      /*set up the dialog*/
+      choicesDialog(json); 
+    });
+  });
+  </script>
 
 </body>
 </html>
