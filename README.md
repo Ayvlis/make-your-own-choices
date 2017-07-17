@@ -13,7 +13,7 @@ simply import make-your-own-choices .js and .css files into your project
 	<link rel="stylesheet" href="dist/css/make-your-own-choices.min.css">
 	<script src="dist/js/dialog.min.js"></script>
 	
-then add the class `"dialog-trigger"` to the link that opens the dialog and add an empty `<div>` element with `id=myoc-dialog` that contains another `div` element with `class="myoc-dialog__body"`
+then add the class `"dialog-trigger"` to the link that opens the dialog and add a `<div>` element with `id=myoc-dialog` that contains an empty `div` element with `class="myoc-dialog__body"`
 
 	<!--index.html-->
 	<button class="trigger"> Open the Dialog! </button>
