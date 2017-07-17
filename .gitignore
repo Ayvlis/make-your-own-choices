@@ -3,3 +3,7 @@ ignore
 gulpfile.js
 .sass-cache
 index.html
+node_modules
+package.json
+gulpfile.js
+server.js

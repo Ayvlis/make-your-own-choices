@@ -1,0 +1,1 @@
+body:before{white-space:pre;font-family:monospace;content:'Error: Undefined variable: "$blue".\A         on line 6 of src/styles/scss/main.scss\A \A 1: /*colors*/\A 2: \A 3: .trigger {\A 4:   p {\A 5:     cursor: pointer;\A 6:     color: $blue;\A 7:       font-family: "Arial";\A 8:   }\A 9: \A 10:   width: 10vw;\A 11:   margin: auto;'}

@@ -1,9 +1,6 @@
 function choicesDialog(dialogContent) {
-  /*add the body for the dialog*/
-  $('body').append("<div id='dialog'><div class='dialog-body'></div></div>");
-
   /*open the dialog*/
-  openDialog("#dialog", dialogContent);
+  openDialog("#myoc-dialog", dialogContent);
   
 }
 
@@ -13,8 +10,8 @@ function openDialog(dialogId, JSONcontent) {
       content = JSONcontent; 
 
     /* "re"opening the dialog will restart the path */
-     $(".dialog-body").empty(); 
-     createList(JSONcontent, ".dialog-body");
+     $(".myoc-dialog__body").empty(); 
+     createList(JSONcontent, ".myoc-dialog__body");
      
      /*inizialize the checkbox listeners*/
     $(".my-radio").click(function() {
@@ -22,7 +19,7 @@ function openDialog(dialogId, JSONcontent) {
     });
 
     /*open jQuery dialog*/
-     $("#dialog").dialog({
+     $("#myoc-dialog").dialog({
       resizable: false,
       height: "auto",
       width: 400,
@@ -69,7 +66,7 @@ function openDialog(dialogId, JSONcontent) {
     var previousContent = content;
     
     /*move to the next section*/
-    changeList(".dialog-body", previousContent);
+    changeList(".myoc-dialog__body", previousContent);
 
     /*reset current content*/
     content = JSONcontent;
@@ -92,7 +89,7 @@ function openDialog(dialogId, JSONcontent) {
     var nextContent = content[history[history.length - 1]].content;
 
     /*move to the next section*/
-    changeList(".dialog-body", nextContent, checked);
+    changeList(".myoc-dialog__body", nextContent, checked);
 
     /*reset current content*/
     content = JSONcontent;
